@@ -25,7 +25,8 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
+@import "../assets/css/base.css";
 .container {
   font-size: 20px;
   width: 100%;
