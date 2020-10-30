@@ -1,42 +1,52 @@
 <template>
-  <el-row type="flex" class="bottom-sub">
-    <el-col :span="18">
-      <el-row type="flex">
-        <el-col :span="3">
-          <div class="environment">
-            <label>环境监测</label>
-            <table class="environment-list">
-              <tr><td>温度</td><td>湿度</td></tr>
-              <tr><td>17°</td><td>40</td></tr>
-              <tr><td>天气情况</td><td>风向</td></tr>
-              <tr><td>大雨</td><td>3</td></tr>
-              <tr><td>风速等级</td><td>风速</td></tr>
-              <tr><td>4</td><td>19</td></tr>
-            </table>
-          </div>
-        </el-col>
-        <el-col :span="7">
-          <div class="otherSub">
-            <label>其他问题统计</label>
-            <e-charts :options="otherP" />
-          </div>
-        </el-col>
-        <el-col :span="7">
-          <div class="qualitySub">
-            <label>9月质量问题统计</label>
-            <e-charts :options="qualityP" />
-          </div>
-        </el-col>
-        <el-col :span="7">
-          <div class="securitySub">
-            <label>9月安全问题统计</label>
-            <e-charts :options="securityP" />
-          </div>
-        </el-col>
-      </el-row>
+  <el-row type="flex">
+    <el-col :span="4">
+      <div class="environment">
+        <label>环境监测</label>
+        <table class="environment-list">
+          <tr>
+            <td>温度</td>
+            <td>湿度</td>
+            <td>天气情况</td>
+          </tr>
+          <tr>
+            <td>17°</td>
+            <td>50</td>
+            <td>晴</td>
+          </tr>
+          <tr>
+            <td>风向</td>
+            <td>风速等级</td>
+            <td>风速</td>
+          </tr>
+          <tr>
+            <td>东风</td>
+            <td>1级</td>
+            <td>2m/s</td>
+          </tr>
+        </table>
+      </div>
     </el-col>
-    <el-col :span="6">
-       <div class="image-progress">
+    <el-col :span="4">
+      <div class="otherSub">
+        <label>其他问题统计</label>
+        <e-charts :options="otherP" />
+      </div>
+    </el-col>
+    <el-col :span="4">
+      <div class="qualitySub">
+        <label>9月质量问题统计</label>
+        <e-charts :options="qualityP" />
+      </div>
+    </el-col>
+    <el-col :span="4">
+      <div class="securitySub">
+        <label>9月安全问题统计</label>
+        <e-charts :options="securityP" />
+      </div>
+    </el-col>
+    <el-col :span="8">
+      <div class="image-progress">
         <label>形象进度</label>
         <table class="progress-sub">
           <tr>
@@ -127,9 +137,10 @@ export default {
         grid: {
           left: "3%",
           right: "4%",
-          bottom: 0,
-          top: "6%",
+          bottom: "3%",
+          top: "4%",
           containLabel: true,
+          height: 220,
         },
         yAxis: {
           type: "log",
@@ -164,9 +175,11 @@ export default {
         grid: {
           left: "3%",
           right: "4%",
-          bottom: 0,
-          top: "6%",
+          bottom: "3%",
+          top: "4%",
           containLabel: true,
+          height: "220px",
+          width: "310px;",
         },
         xAxis: [
           {
@@ -208,9 +221,11 @@ export default {
         grid: {
           left: "3%",
           right: "4%",
-          bottom: 0,
-          top: "6%",
+          bottom: "3%",
+          top: "4%",
           containLabel: true,
+          height: "220px",
+          width: "310px;",
         },
         xAxis: [
           {
@@ -241,14 +256,14 @@ export default {
           },
         ],
       },
+      
     };
   },
 };
 </script>
 
 <style scoped>
-.bottom-sub {
-  color: #fff;
+.environment {
 }
 .environment label,
 .otherSub label,
@@ -256,31 +271,44 @@ export default {
 .securitySub label,
 .image-progress label {
   display: block;
-  height: 1rem;
-  line-height: 1rem;
-  padding: 0 3%;
+  height: 30px;
+  line-height: 30px;
+  margin-bottom: 20px;
+  color: #fff;
+  padding: 0 10px;
 }
 .environment-list {
   width: 90%;
-  margin: 3% auto;
+  margin: 0 auto;
   font-size: 14px;
-  text-align: left;
+  background: #eee;
+  text-align: center;
+  opacity: 0.7;
 }
-.environment-list tr,.progress-sub tr {
-  font-size: 0.8rem;
-  height: 1.3rem;
+.environment-list tr {
+  height: 50px;
 }
 .otherSub {
   width: 100%;
 }
 .echarts {
-  width: 100%;
-  height: 10rem;
+  width: 317px;
+  height: 260px;
 }
-.image-progress {
+.image-progress{
   padding-left: 20px;
 }
-.progress-sub {
+.progress-sub{
   text-align: center;
+  background: #fff;
+  opacity: 0.7;
+}
+.progress-sub tr{
+  font-size: 14px;
+  height: 30px;
+  line-height: 30px;
+}
+.progress-sub tr td{
+  
 }
 </style>

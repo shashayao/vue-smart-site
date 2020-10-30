@@ -28,7 +28,7 @@ export default {
 <style>
 @import "../assets/css/base.css";
 .container {
-  font-size: 20px;
+  font-size: 0.9rem;
   width: 100%;
   height: auto;
 }

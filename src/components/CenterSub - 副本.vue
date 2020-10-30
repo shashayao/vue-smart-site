@@ -1,51 +1,43 @@
 <template>
-  <el-row type="flex" class="center-sub">
-    <el-col :span="15">
+  <el-row type="flex">
+    <el-col :span="17">
       <div class="grid-content bg-purple mainImg">
         <img :src="mapImg" class="mapImg" />
       </div>
     </el-col>
-    <el-col :span="9">
-      <el-col type="flex">
-        <el-row :span="5"
-          ><div class="center-right-num">
-            <div class="num-title">
-              <label>安全施工天数</label><label>实施作业人数</label>
-            </div>
-            <div class="num-content">
-              <label>388天</label><label>52人</label>
-            </div>
-          </div></el-row
-        >
-        <el-row :span="7">
-          <div class="center-right-clockIn">
-            <label class="clockIn-title">人员打卡记录</label>
-            <div class="clockIn-header">
-              <ul>
-                <li>姓名</li>
-                <li>单位</li>
-                <li>时间</li>
-                <li>状态</li>
-              </ul>
-            </div>
-            <div class="clockIn-item">
-              <ul ref="clockIn" :class="{'animate-up':animateUp}">
-                <li v-for="item in tableData" :key="item.name">
-                  <span>{{ item.name }}</span>
-                  <span>{{ item.company }}</span>
-                  <span>{{ item.date }}</span>
-                  <span>{{ item.status }}</span>
-                </li>
-              </ul>
-            </div>
+    <el-col :span="7">
+      <div class="grid-content bg-purple center-right">
+        <div class="center-right-num">
+          <div class="num-title">
+            <label>安全施工天数</label><label>实施作业人数</label>
           </div>
-        </el-row>
-        <el-row :span="7"
-          ><div class="center-right-output">
-            <label class="output-title">9月产值完成情况</label>
-            <e-charts :options="output" ref="output" /></div
-        ></el-row>
-      </el-col>
+          <div class="num-content"><label>388天</label><label>52人</label></div>
+        </div>
+        <div class="center-right-clockIn">
+          <label class="clockIn-title">人员打卡记录</label>
+
+          <el-table
+            :data="tableData"
+            class="clockIn-content"
+            @cell-mouse-enter="evtEnter"
+            @cell-mouse-leave="evtOut"
+            :header-cell-style="{ background: '#050e1a', color: '#fff' }"
+            :cell-style="{
+              background: '#050e1a',
+              color: '#fff',
+            }"
+          >
+            <el-table-column prop="name" label="姓名"> </el-table-column>
+            <el-table-column prop="company" label="单位" st> </el-table-column>
+            <el-table-column prop="date" label="时间"> </el-table-column>
+            <el-table-column prop="status" label="状态"> </el-table-column>
+          </el-table>
+        </div>
+        <div class="center-right-output">
+          <label class="output-title">9月产值完成情况</label>
+          <e-charts :options="output" ref="output" />
+        </div>
+      </div>
     </el-col>
   </el-row>
 </template>
@@ -78,7 +70,7 @@ export default {
         },
         {
           date: "2016-05-01",
-          name: "王大",
+          name: "王小h",
           company: "上海市普陀区金沙江路 1519 弄",
           status: "正常打卡",
         },
@@ -89,14 +81,31 @@ export default {
           status: "正常打卡",
         },
         {
+          date: "2016-05-02",
+          name: "王小11",
+          company: "上海市普陀区金沙江路 1518 弄",
+          status: "正常打卡",
+        },
+        {
+          date: "2016-05-04",
+          name: "王虎22",
+          company: "上海市普陀区金沙江路 1517 弄",
+          status: "正常打卡",
+        },
+        {
+          date: "2016-05-01",
+          name: "王小h3",
+          company: "上海市普陀区金沙江路 1519 弄",
+          status: "正常打卡",
+        },
+        {
           date: "2016-05-03",
-          name: "大虎",
+          name: "小虎4",
           company: "上海市普陀区金沙江路 1516 弄",
           status: "正常打卡",
         },
       ],
-      activeIndex: 0,
-      animateUp:false,
+      activeIndex: 4,
       timer: "",
       output: {
         tooltip: {
@@ -141,17 +150,40 @@ export default {
     };
   },
   mounted() {
-    this.timer = setInterval(this.autoSlide,2000);
+    this.autoSlide();
     this.echartResize();
   },
   methods: {
+    evtEnter() {
+      clearInterval(this.timer);
+    },
+    evtOut() {
+      this.autoSlide();
+    },
     autoSlide() {
-      this.animateUp = true;
-      setTimeout(()=>{
-        this.tableData.push(this.tableData[0])
-        this.tableData.shift()
-        this.animateUp = false
-      },500)
+      //  获取表格体
+      let t = document.getElementsByClassName("el-table__body-wrapper");
+      let tH = document.getElementsByClassName("el-table__header-wrapper");
+
+      let marginTop = 0;
+      this.timer = setInterval(() => {
+        tH[0].style.position = "relative";
+        tH[0].style.zIndex = 2;
+        tH[0].style.backgroundColor = "transparent";
+        t[0].style.backgroundColor = "transparent";
+        t[0].style.zIndex = 1;
+        marginTop = -(48 * (this.activeIndex - 3)) + "px";
+
+        this.activeIndex++;
+        if (this.activeIndex == this.tableData.length) {
+          this.activeIndex = 4;
+          t[0].style.transition = "0s";
+          t[0].style.marginTop = 0;
+        } else {
+          t[0].style.transition = "all 0.5s";
+          t[0].style.marginTop = marginTop;
+        }
+      }, 2000);
     },
     echartResize() {
       let twChart = this.$refs.output;
@@ -166,14 +198,11 @@ export default {
 </script>
 
 <style scoped>
-.center-sub {
-  color: #fff;
-}
-.mainImg {
+.mainImg{
   text-align: center;
 }
 .mapImg {
-  width: 97%;
+  width: 95%;
 }
 .center-right {
   color: #fff;
@@ -190,7 +219,8 @@ export default {
 }
 .center-right-num div label {
   display: inline-block;
-  line-height: 2rem;
+  height: 3vh;
+  line-height: 3vh;
   width: 50%;
 }
 .num-title {
@@ -200,55 +230,18 @@ export default {
   text-align: center;
 }
 /* 人员打卡记录 */
-.clockIn-header {
-  height: 2rem;
-}
-.clockIn-header ul li {
-  float: left;
-  width: 25%;
-  text-align: center;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  line-height: 2rem;
-}
-.clockIn-item {
-  height: 8rem;
-  overflow: hidden;
-}
-.clockIn-item ul li {
-  line-height: 2rem;
-}
 .clockIn-title,
 .output-title {
   display: block;
-  line-height: 3rem;
+  height: 6vh;
+  line-height: 6vh;
 }
 .clockIn-content {
   width: 100%;
-  height: 9rem;
+  height: 24vh;
 }
 .echarts {
-  width: 100%;
-  height: 8rem;
-}
-.clockIn-item li,.clockIn-header ul{
-  display: flex;
-  text-align: center;
-}
-.clockIn-item li span:nth-child(1),.clockIn-header li:nth-child(1){
-  flex: 1;  
-}
-.clockIn-item li span:nth-child(2),.clockIn-header li:nth-child(2){
-  flex: 5;
-}
-.clockIn-item li span:nth-child(3),.clockIn-header li:nth-child(3){
-  flex: 2;
-}
-.clockIn-item li span:nth-child(4),.clockIn-header li:nth-child(4){
-  flex: 2;
-}
-.animate-up{
-  transition: all 0.5s ease-in-out;
-  transform: translateY(-2rem);
+  width: 27vw;
+  height: 30vh;
 }
 </style>

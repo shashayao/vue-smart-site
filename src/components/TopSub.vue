@@ -1,26 +1,24 @@
 <template>
-  <div>
-    <el-row type="flex" class="row-bg">
-      <el-col :span="8">
-        <div class="grid-content bg-purple header-btn header-btn-left">
-          <el-button>考勤管理</el-button>
-          <el-button>视频监控</el-button>
-          <el-button>质量管理</el-button>
-          <el-button>安全管理</el-button>
-        </div>
+  <div class="top-sub">
+    <el-row type="flex">
+      <el-col :span="9">
+        <el-row type="flex" class="header-btn">
+          <el-col :span="6"><el-button>考勤管理</el-button></el-col>
+          <el-col :span="6"><el-button>视频监控</el-button></el-col>
+          <el-col :span="6"><el-button>质量管理</el-button></el-col>
+          <el-col :span="6"><el-button>安全管理</el-button></el-col>
+        </el-row>
       </el-col>
-      <el-col :span="8">
-        <div class="grid-content bg-purple">
-          <span class="header-title">智慧工地综合管理平台</span>
-        </div>
+      <el-col :span="6">
+        <h1 class="header-title">智慧工地综合管理平台</h1>
       </el-col>
-      <el-col :span="8">
-        <div class="grid-content bg-purple header-btn header-btn-right">
-          <el-button>施工监测</el-button>
-          <el-button>环境监测</el-button>
-          <el-button>盾构监测</el-button>
-          <el-button>进度管理</el-button>
-        </div>
+      <el-col :span="9">
+        <el-row type="flex" class="header-btn">
+          <el-col :span="6"><el-button>施工监测</el-button></el-col>
+          <el-col :span="6"><el-button>环境监测</el-button></el-col>
+          <el-col :span="6"><el-button>盾构监测</el-button></el-col>
+          <el-col :span="6"><el-button>进度管理</el-button></el-col>
+        </el-row>
       </el-col>
     </el-row>
   </div>
@@ -33,31 +31,20 @@ export default {
 </script>
 
 <style scoped>
-.row-bg {
-  height: 80px;
-  line-height: 80px;
-}
 .header-title {
-  display: block;
+  font-size: 1.75rem;
+  color: #fff;
   text-align: center;
-  font-size: 2.2em;
+}
+.header-btn {
+  text-align: center;
+}
+.header-btn button{
+  background: transparent;
   color: #fff;
 }
-.header-btn-left {
-  text-align: left;
-  width: 100%;
-}
-.header-btn-left button,
-.mapImg {
-  margin-left: 30px;
-  font-size: 18px;
-}
-.header-btn-right {
-  text-align: right;
-  width: 100%;
-}
-.header-btn-right button {
-  margin-right: 30px;
-  font-size: 18px;
+.el-row{
+  align-items: center;
+  justify-items: center;
 }
 </style>
