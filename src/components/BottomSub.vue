@@ -256,8 +256,8 @@ export default {
 .securitySub label,
 .image-progress label {
   display: block;
-  height: 1rem;
-  line-height: 1rem;
+  height: 4vh;
+  line-height: 4vh;
   padding: 0 3%;
 }
 .environment-list {
@@ -268,19 +268,20 @@ export default {
 }
 .environment-list tr,.progress-sub tr {
   font-size: 0.8rem;
-  height: 1.3rem;
+  height: 2.8vh;
 }
 .otherSub {
   width: 100%;
 }
 .echarts {
   width: 100%;
-  height: 10rem;
+  height: 20vh;
 }
 .image-progress {
   padding-left: 20px;
 }
 .progress-sub {
+  width: 100%;
   text-align: center;
 }
 </style>

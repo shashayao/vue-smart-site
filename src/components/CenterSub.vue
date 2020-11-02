@@ -40,11 +40,12 @@
             </div>
           </div>
         </el-row>
-        <el-row :span="7"
-          ><div class="center-right-output">
+        <el-row :span="7">
+          <div class="center-right-output">
             <label class="output-title">9月产值完成情况</label>
-            <e-charts :options="output" ref="output" /></div
-        ></el-row>
+            <e-charts :options="output" ref="output" />
+          </div>
+        </el-row>
       </el-col>
     </el-col>
   </el-row>
@@ -190,7 +191,7 @@ export default {
 }
 .center-right-num div label {
   display: inline-block;
-  line-height: 2rem;
+  line-height: 4vh;
   width: 50%;
 }
 .num-title {
@@ -201,7 +202,7 @@ export default {
 }
 /* 人员打卡记录 */
 .clockIn-header {
-  height: 2rem;
+  height: 4vh;
 }
 .clockIn-header ul li {
   float: left;
@@ -209,27 +210,23 @@ export default {
   text-align: center;
   text-overflow: ellipsis;
   white-space: nowrap;
-  line-height: 2rem;
+  line-height: 4vh;
 }
 .clockIn-item {
-  height: 8rem;
+  height: 16vh;
   overflow: hidden;
 }
 .clockIn-item ul li {
-  line-height: 2rem;
+  line-height: 4vh;
 }
 .clockIn-title,
 .output-title {
   display: block;
-  line-height: 3rem;
-}
-.clockIn-content {
-  width: 100%;
-  height: 9rem;
+  line-height: 5vh;
 }
 .echarts {
   width: 100%;
-  height: 8rem;
+  height: 30vh;
 }
 .clockIn-item li,.clockIn-header ul{
   display: flex;
@@ -249,6 +246,6 @@ export default {
 }
 .animate-up{
   transition: all 0.5s ease-in-out;
-  transform: translateY(-2rem);
+  transform: translateY(-4vh);
 }
 </style>

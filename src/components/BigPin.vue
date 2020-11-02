@@ -30,6 +30,6 @@ export default {
 .container {
   font-size: 0.9rem;
   width: 100%;
-  height: auto;
+  height: 100vh;
 }
 </style>
