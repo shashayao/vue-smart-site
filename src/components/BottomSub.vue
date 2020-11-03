@@ -6,12 +6,30 @@
           <div class="environment">
             <label>环境监测</label>
             <table class="environment-list">
-              <tr><td>温度</td><td>湿度</td></tr>
-              <tr><td>17°</td><td>40</td></tr>
-              <tr><td>天气情况</td><td>风向</td></tr>
-              <tr><td>大雨</td><td>3</td></tr>
-              <tr><td>风速等级</td><td>风速</td></tr>
-              <tr><td>4</td><td>19</td></tr>
+              <tr>
+                <td>温度</td>
+                <td>湿度</td>
+              </tr>
+              <tr>
+                <td>{{ weatherData.temperature_curr }}</td>
+                <td>{{ weatherData.humidity }}</td>
+              </tr>
+              <tr>
+                <td>天气情况</td>
+                <td>风向</td>
+              </tr>
+              <tr>
+                <td>{{ weatherData.weather_curr }}</td>
+                <td>{{ weatherData.wind }}</td>
+              </tr>
+              <tr>
+                <td>风速等级</td>
+                <td>空气指数</td>
+              </tr>
+              <tr>
+                <td>{{ weatherData.winp }}</td>
+                <td>{{ weatherData.aqi }}</td>
+              </tr>
             </table>
           </div>
         </el-col>
@@ -36,7 +54,7 @@
       </el-row>
     </el-col>
     <el-col :span="6">
-       <div class="image-progress">
+      <div class="image-progress">
         <label>形象进度</label>
         <table class="progress-sub">
           <tr>
@@ -103,6 +121,7 @@ import ECharts from "vue-echarts";
 import "echarts/lib/chart/line";
 import "echarts/lib/chart/bar";
 import "echarts/lib/component/tooltip";
+import { getWeatherData } from "@/network/dapin"; //调用天气
 export default {
   name: "BottomSub",
   components: {
@@ -241,7 +260,34 @@ export default {
           },
         ],
       },
+      weatherData: [],
     };
+  },
+  created() {
+    this.MgetWeatherData();
+    this.MgetPm2_5Data();
+  },
+  methods: {
+    MgetWeatherData() {
+      getWeatherData().then((res) => {
+        
+        this.weatherData = res.result;
+        switch (res.result.weather) {
+          case "晴":
+            this.weatherData.weather_icon = require("assets/img/fine.png");
+            break;
+          case "多云":
+            this.weatherData.weather_icon = require("assets/img/cloudy.png");
+            break;
+          case "阴":
+            this.weatherData.weather_icon = require("assets/img/yin.png");
+            break;
+          case "阵雨":
+            this.weatherData.weather_icon = require("assets/img/rain.png");
+            break;
+        }
+      });
+    },
   },
 };
 </script>
@@ -266,16 +312,17 @@ export default {
   font-size: 14px;
   text-align: left;
 }
-.environment-list tr,.progress-sub tr {
+.environment-list tr,
+.progress-sub tr {
   font-size: 0.8rem;
-  height: 2.8vh;
+  height: 2.7vh;
 }
 .otherSub {
   width: 100%;
 }
 .echarts {
   width: 100%;
-  height: 20vh;
+  height: 19vh;
 }
 .image-progress {
   padding-left: 20px;
