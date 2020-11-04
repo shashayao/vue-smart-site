@@ -44,12 +44,21 @@
               <el-button v-popover:popover slot="reference">盾构监测</el-button>
             </el-popover>
           </el-col>
-          <el-col :span="6"><el-button @click="dialogConstructionVisible = true">数字工地</el-button></el-col>
+          <el-col :span="6"
+            ><el-button @click="dialogConstructionVisible = true"
+              >数字工地</el-button
+            ></el-col
+          >
         </el-row>
       </el-col>
     </el-row>
     <!-- 考勤管理弹出框 -->
-    <el-dialog title="考勤管理" :visible.sync="dialogTableVisible" custom-class="check-manage" top="5vh">
+    <el-dialog
+      title="考勤管理"
+      :visible.sync="dialogTableVisible"
+      custom-class="check-manage"
+      top="5vh"
+    >
       <!-- 长春市春成道路工程有公司 -->
       <div>
         <h1>长春市春成道路工程有公司</h1>
@@ -132,18 +141,33 @@
         </table>
       </div>
     </el-dialog>
+    <!-- 数字工地 -->
+    <el-dialog
+      title="数字工地"
+      :visible.sync="dialogConstructionVisible"
+      width="100%"
+      top="1vh"
+      custom-class="dialogConstruction"
+    >
+      <map-construction />
+    </el-dialog>
   </div>
 </template>
 
 <script>
 import { getWeatherData } from "@/network/dapin"; //调用天气
+import MapConstruction from "./MapConstruction"
 export default {
   name: "TopSub",
+  components:{
+    MapConstruction
+  },
   data() {
     return {
       shieldShow: true,
       dialogTableVisible: false,
       dialogWeatherVisible: false,
+      dialogConstructionVisible: false,
       ccData: [
         {
           date: "2020.4.1",
@@ -430,16 +454,26 @@ export default {
 
 </style>
 <style>
-.dialogWeather,.shield-popover,.check-manage {
+.dialogWeather,
+.shield-popover,
+.check-manage,
+.dialogConstruction {
   background-image: linear-gradient(#023863, #06111e);
 }
-.dialogWeather span ,.check-manage span,.check-manage h1{
+.dialogWeather span,
+.check-manage span,
+.check-manage h1,
+.dialogConstruction span {
   color: #fff;
 }
 .check-manage .el-table .check-cc,
 .check-manage .el-table .check-xy,
-.check-manage .el-table .check-zc{
+.check-manage .el-table .check-zc {
   background: linear-gradient(#023863, #06111e);
   color: #fff;
+}
+.dialogConstruction .el-dialog__body{
+  color:#000;
+  word-break:normal;
 }
 </style>
