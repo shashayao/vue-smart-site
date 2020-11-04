@@ -265,7 +265,6 @@ export default {
   },
   created() {
     this.MgetWeatherData();
-    this.MgetPm2_5Data();
   },
   methods: {
     MgetWeatherData() {

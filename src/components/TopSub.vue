@@ -44,25 +44,41 @@
               <el-button v-popover:popover slot="reference">盾构监测</el-button>
             </el-popover>
           </el-col>
-          <el-col :span="6"><el-button>进度管理</el-button></el-col>
+          <el-col :span="6"><el-button @click="dialogConstructionVisible = true">数字工地</el-button></el-col>
         </el-row>
       </el-col>
     </el-row>
     <!-- 考勤管理弹出框 -->
-    <el-dialog title="考勤管理" :visible.sync="dialogTableVisible">
-      <el-table :data="gridData">
-        <el-table-column
-          property="date"
-          label="日期"
-          width="150"
-        ></el-table-column>
-        <el-table-column
-          property="name"
-          label="姓名"
-          width="200"
-        ></el-table-column>
-        <el-table-column property="address" label="地址"></el-table-column>
-      </el-table>
+    <el-dialog title="考勤管理" :visible.sync="dialogTableVisible" custom-class="check-manage" top="5vh">
+      <!-- 长春市春成道路工程有公司 -->
+      <div>
+        <h1>长春市春成道路工程有公司</h1>
+        <el-table :data="ccData" height="180" row-class-name="check-cc">
+          <el-table-column property="date" label="日期"></el-table-column>
+          <el-table-column property="name" label="姓名"></el-table-column>
+          <el-table-column property="status" label="打卡状态"></el-table-column>
+        </el-table>
+      </div>
+
+      <!-- 长春市新雨建筑劳务有限公司 -->
+      <div>
+        <h1>长春市新雨建筑劳务有限公司</h1>
+        <el-table :data="xyData" height="180" row-class-name="check-xy">
+          <el-table-column property="date" label="日期"></el-table-column>
+          <el-table-column property="name" label="姓名"></el-table-column>
+          <el-table-column property="status" label="打卡状态"></el-table-column>
+        </el-table>
+      </div>
+
+      <!-- 辽宁志诚岩土工程有限公司 -->
+      <div>
+        <h1>辽宁志诚岩土工程有限公司</h1>
+        <el-table :data="zcData" height="180" row-class-name="check-zc">
+          <el-table-column property="date" label="日期"></el-table-column>
+          <el-table-column property="name" label="姓名"></el-table-column>
+          <el-table-column property="status" label="打卡状态"></el-table-column>
+        </el-table>
+      </div>
     </el-dialog>
     <!-- 环境监测弹出框 -->
     <el-dialog
@@ -107,19 +123,11 @@
           </tr>
           <tr>
             <td>空气指数</td>
-            <td>pm2.5</td>
+            <td>湿度</td>
           </tr>
           <tr>
             <td>{{ weatherData.aqi }}</td>
-            <td>{{ weatherData.pm2_5 }}</td>
-          </tr>
-          <tr>
-            <td>湿度</td>
-            <td>空气质量</td>
-          </tr>
-          <tr>
             <td>{{ weatherData.humidity }}</td>
-            <td>{{ weatherData.quality }}</td>
           </tr>
         </table>
       </div>
@@ -128,7 +136,7 @@
 </template>
 
 <script>
-import { getWeatherData, getPm2_5Data } from "@/network/dapin"; //调用天气
+import { getWeatherData } from "@/network/dapin"; //调用天气
 export default {
   name: "TopSub",
   data() {
@@ -136,26 +144,205 @@ export default {
       shieldShow: true,
       dialogTableVisible: false,
       dialogWeatherVisible: false,
-      gridData: [
+      ccData: [
         {
-          date: "2016-05-02",
-          name: "王小虎",
-          address: "上海市普陀区金沙江路 1518 弄",
+          date: "2020.4.1",
+          name: "屈彦喜",
+          status: "正常打卡",
         },
         {
-          date: "2016-05-04",
-          name: "王小虎",
-          address: "上海市普陀区金沙江路 1518 弄",
+          date: "2020.4.1",
+          name: "杨学权",
+          status: "正常打卡",
         },
         {
-          date: "2016-05-01",
-          name: "王小虎",
-          address: "上海市普陀区金沙江路 1518 弄",
+          date: "2020.4.4",
+          name: "杨玉栋",
+          status: "正常打卡",
         },
         {
-          date: "2016-05-03",
-          name: "王小虎",
-          address: "上海市普陀区金沙江路 1518 弄",
+          date: "2020.4.1",
+          name: "张浩",
+          status: "正常打卡",
+        },
+        {
+          date: "2020.4.8",
+          name: "邹建平",
+          status: "正常打卡",
+        },
+        {
+          date: "2020.4.1",
+          name: "韩长玉",
+          status: "正常打卡",
+        },
+        {
+          date: "2020.4.1",
+          name: "张晓辉",
+          status: "正常打卡",
+        },
+        {
+          date: "2020.4.13",
+          name: "宫春龙",
+          status: "正常打卡",
+        },
+        {
+          date: "2020.4.1",
+          name: "郭旭",
+          status: "正常打卡",
+        },
+        {
+          date: "2020.4.1",
+          name: "马守彬",
+          status: "正常打卡",
+        },
+        {
+          date: "2020.4.1",
+          name: "刘磊",
+          status: "正常打卡",
+        },
+        {
+          date: "2020.5.1",
+          name: "张军",
+          status: "正常打卡",
+        },
+        {
+          date: "2020.5.11",
+          name: "孙海杰",
+          status: "正常打卡",
+        },
+      ],
+      xyData: [
+        {
+          date: "2020.4.1",
+          name: "屈彦喜",
+          status: "正常打卡",
+        },
+        {
+          date: "2020.4.1",
+          name: "杨学权",
+          status: "正常打卡",
+        },
+        {
+          date: "2020.4.4",
+          name: "杨玉栋",
+          status: "正常打卡",
+        },
+        {
+          date: "2020.4.1",
+          name: "张浩",
+          status: "正常打卡",
+        },
+        {
+          date: "2020.4.8",
+          name: "邹建平",
+          status: "正常打卡",
+        },
+        {
+          date: "2020.4.1",
+          name: "韩长玉",
+          status: "正常打卡",
+        },
+        {
+          date: "2020.4.1",
+          name: "张晓辉",
+          status: "正常打卡",
+        },
+        {
+          date: "2020.4.13",
+          name: "宫春龙",
+          status: "正常打卡",
+        },
+        {
+          date: "2020.4.1",
+          name: "郭旭",
+          status: "正常打卡",
+        },
+        {
+          date: "2020.4.1",
+          name: "马守彬",
+          status: "正常打卡",
+        },
+        {
+          date: "2020.4.1",
+          name: "刘磊",
+          status: "正常打卡",
+        },
+        {
+          date: "2020.5.1",
+          name: "张军",
+          status: "正常打卡",
+        },
+        {
+          date: "2020.5.11",
+          name: "孙海杰",
+          status: "正常打卡",
+        },
+      ],
+      zcData: [
+        {
+          date: "2020.4.1",
+          name: "屈彦喜",
+          status: "正常打卡",
+        },
+        {
+          date: "2020.4.1",
+          name: "杨学权",
+          status: "正常打卡",
+        },
+        {
+          date: "2020.4.4",
+          name: "杨玉栋",
+          status: "正常打卡",
+        },
+        {
+          date: "2020.4.1",
+          name: "张浩",
+          status: "正常打卡",
+        },
+        {
+          date: "2020.4.8",
+          name: "邹建平",
+          status: "正常打卡",
+        },
+        {
+          date: "2020.4.1",
+          name: "韩长玉",
+          status: "正常打卡",
+        },
+        {
+          date: "2020.4.1",
+          name: "张晓辉",
+          status: "正常打卡",
+        },
+        {
+          date: "2020.4.13",
+          name: "宫春龙",
+          status: "正常打卡",
+        },
+        {
+          date: "2020.4.1",
+          name: "郭旭",
+          status: "正常打卡",
+        },
+        {
+          date: "2020.4.1",
+          name: "马守彬",
+          status: "正常打卡",
+        },
+        {
+          date: "2020.4.1",
+          name: "刘磊",
+          status: "正常打卡",
+        },
+        {
+          date: "2020.5.1",
+          name: "张军",
+          status: "正常打卡",
+        },
+        {
+          date: "2020.5.11",
+          name: "孙海杰",
+          status: "正常打卡",
         },
       ],
       weatherData: [],
@@ -163,7 +350,6 @@ export default {
   },
   created() {
     this.MgetWeatherData();
-    this.MgetPm2_5Data();
   },
   methods: {
     // 质量管理连接
@@ -173,7 +359,6 @@ export default {
     //
     MgetWeatherData() {
       getWeatherData().then((res) => {
-        // console.log(res.result);
         this.weatherData = res.result;
         switch (res.result.weather) {
           case "晴":
@@ -188,14 +373,6 @@ export default {
           case "阵雨":
             this.weatherData.weather_icon = require("assets/img/rain.png");
             break;
-        }
-      });
-    },
-    MgetPm2_5Data() {
-      getPm2_5Data().then((res) => {
-        if (!res.error) {
-          this.weatherData.quality = res[0].quality;
-          this.weatherData.pm2_5 = res[0].pm2_5;
         }
       });
     },
@@ -225,7 +402,7 @@ export default {
 }
 
 .shield-popover button {
-  background: #023864;
+  background: transparent;
   color: #fff;
 }
 
@@ -250,12 +427,19 @@ export default {
 .environment-list tr:nth-child(odd) td {
   color: #ccc;
 }
+
 </style>
 <style>
-.dialogWeather {
+.dialogWeather,.shield-popover,.check-manage {
   background-image: linear-gradient(#023863, #06111e);
 }
-.dialogWeather span {
+.dialogWeather span ,.check-manage span,.check-manage h1{
+  color: #fff;
+}
+.check-manage .el-table .check-cc,
+.check-manage .el-table .check-xy,
+.check-manage .el-table .check-zc{
+  background: linear-gradient(#023863, #06111e);
   color: #fff;
 }
 </style>

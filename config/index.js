@@ -34,10 +34,6 @@ module.exports = {
     cacheBusting: true,
 
     cssSourceMap: true,
-    proxyTable: [{
-      target: "http://www.pm25.in",
-	    changeOrigin: true,
-    }]
   },
 
   build: {
