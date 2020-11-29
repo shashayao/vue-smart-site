@@ -93,7 +93,7 @@
     <el-dialog
       title="环境监测"
       :visible.sync="dialogWeatherVisible"
-      width="22%"
+      width="30%"
       custom-class="dialogWeather"
     >
       <div class="weather-sub">

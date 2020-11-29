@@ -13,6 +13,11 @@
     import turfCircle from '@turf/circle';
     import turfBooleanContains from '@turf/boolean-contains'
     import turfBooleanOverlap from '@turf/boolean-overlap'
+    // import markercluster from './leaflet.markercluster'
+    import "leaflet.markercluster/dist/leaflet.markercluster"
+    import "leaflet.markercluster/dist/leaflet.markercluster-src"
+    import "leaflet.markercluster/dist/MarkerCluster.css"
+    import "leaflet.markercluster/dist/MarkerCluster.Default.css"
     export default {
         toolBarType: -1,
         curDrawObj: null,
